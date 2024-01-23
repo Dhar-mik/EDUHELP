@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form and sign up</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h2 class="logo">EDUHELP FORUM</h2>
+    <nav class="Navigation">
+          <button class="btnLogin-popup">LOGIN</button>
+    </nav>
+</header>
+<div class="wrapper">
+ 
+    <div class="form-box login">
+      <h2>Login</h2>
+      <form id="loginform" action="#">
+        <div class="input-box">
+          <span class="icon">
+            <ion-icon name="mail"></ion-icon>
+          </span>
+          <input id="email" type="email" required>
+          <label>Email</label>
+        </div>
+        <div class="input-box">
+          <span class="icon">
+            <ion-icon name="lock-closed"></ion-icon>
+          </span>
+          <input id="password" type="password" required>
+          <label>Password</label>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox">Remember me</label>
+          <a href="#" onclick="Forgotpassword()">Forgot password?</a>
+        </div>
+        <button onclick="login()" class="btn" >Login</button>
+         <div class="login-register">
+          <p>Don't have an account? <a href="#" 
+            class="register-link">Sign up</a></p>
+         </div>
+      </form>
+      </div>
+      
+      <div class="form-box register">
+        <h2>Sign up</h2>
+        <form action="#">
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="person"></ion-icon>
+            </span>
+            <input type="text" id="signup-username" required>
+            <label>Username</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="mail"></ion-icon>
+            </span>
+            <input type="email" id="signup-email" required>
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="password" id="signup-password" required>
+            <label>Password</label>
+          </div>
+          <button onclick="signup()" class="btn" >Sign up</button>
+           <div class="login-register">
+            <p>Already have an account?<a href="#" 
+              class="login-link"> Login</a></p>
+           </div>
+           </form>
+          </div>
+        </div> 
+      
+        <script>
+          const firebaseConfig = {
+             apiKey: "AIzaSyBqJYqYRcNMdbYxOetIKePUyGVS1lsKMFE",
+             authDomain: "login-with-firebase-a550c.firebaseapp.com",
+             databaseURL: "https://login-with-firebase-a550c-default-rtdb.firebaseio.com",
+             projectId: "login-with-firebase-a550c",
+             storageBucket: "login-with-firebase-a550c.appspot.com",
+             messagingSenderId: "1083227078627",
+             appId: "1:1083227078627:web:3d4b191d6c44aa3980ead6",
+             measurementId: "G-XR8Z67HN1L"
+          };
+          firebase.initializeApp(firebaseConfig);
+          // Get a reference to the auth service
+          const auth = firebase.auth();
+          // Get a reference to the database service
+          const db = firebase.database();
+          // Get the elements from the HTML
+          const email = document.getElementById("email");
+          const password = document.getElementById("password");
+          const signupusername = document.getElementById("signup-username")
+          const signupEmail = document.getElementById("signup-email");
+          const signupPassword = document.getElementById("signup-password");
+          const message = document.getElementById("message");
+          
+          function login() {
+         
+          const emailValue = email.value;
+          const passwordValue = password.value;
+         
+          auth.signInWithEmailAndPassword(emailValue, passwordValue)
+          .then((userCredential) => {
+          
+          const user = userCredential.user;
+         
+          window.location.href = "home.html";
+          alert("Login successfull! Please click 'ok' to continue")
+          })
+          
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            if (errorCode === "auth/user-not-found") {
+                alert("User not found. Please sign up to create a user.");
+            } else {
+                alert("Error: " + errorCode + " - " + errorMessage);
+            }
+        });
+          
+          }
+
+          function signup() {
+
+          const username = signupusername.value;
+          const emailValue = signupEmail.value;
+          const passwordValue = signupPassword.value;
+     
+          auth.createUserWithEmailAndPassword(emailValue, passwordValue)
+          .then((userCredential) => {
+   
+          const user = userCredential.user;
+        
+          message.innerHTML = "Signed up as: " + user.email;
+       
+          db.ref("users/" + user.uid).set({
+          email: user.email
+          });
+          })
+          .catch((error) => {
+    
+          const errorCode = error.code;
+          const errorMessage = error.message;
+      
+          message.innerHTML = "Error: " + errorCode + " - " + errorMessage;
+          });
+          alert("User created successfully!");
+          }
+          </script>
+<script src="script.js"></script> 
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
