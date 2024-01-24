@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+}
+
+body{
+    top: 300px ;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: fit-content;
+    background-size: cover;
+    background-position: center;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: #345995;
+    display: flex;
+    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo{
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.Navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.Navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: black;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .2s;
+}
+
+.Navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.Navigation .btnLogout-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: black;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.1s;
+}
+
+.Navigation .btnLogout-popup:hover{
+    background: #fff;
+    color: black;
+}
+
+    
+    .header {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: aqua;
+      color: #ffffff;
+    }
+    .description {
+      text-align: center;
+      padding: 20px;
+    }
+    .description p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #555;
+    }
+    .community-image {
+      display: block;
+      margin: 0 auto;
+      width: 70%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 0px;
+      }
+      form {
+        max-width: 1400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+  
+      h1.text-center {
+    color: #19c427; 
+    font-size: 3em;
+    font-weight: bold;
+    margin-top: 110px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .description{
+            text-align: center;
+            display: flex;
+            margin-bottom: 30px;
+          }
+  
+  
+    .btnViewPosts{
+         margin-left: 1300px;
+         font-size: 1.2em;
+         width: 110px;
+         height: 45px;
+         background: azure;
+         border-radius: 20px;
+         cursor: pointer;
+         color: #163928;
+         font-weight: 500;
+      }
+  
+  
+    h1.text{
+      margin-bottom: 20px;
+     }
+        .posts-container{
+          height: 500px;
+          width: 100%;
+        }  
+        
+    h1.text-align{
+              font-size: 3em;
+              font-weight: 750;
+              margin-top: 100px;
+              margin-bottom: 30px;
+          }
+  
+    .tree{
+            margin-top: 100px;
+            color: white;
+           
+          }
+  
+    .first{
+            font-size: 2.5em;
+          }
+  
+    #submit-button {
+        margin-top: 30px;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+  
+    #submit-button:hover {
+        background-color: #45a049;
+      }
+    
+    #post-container {
+    font-size: 1.267em;
+    width: 100%;
+    margin: 22px auto;
+    background-color: #fff;
+    padding: 250px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    margin-right: 100px;
+  }
+  
+     #blog-form{
+      margin-left: 20px;
+      margin-right: 20px;
+     }
+  
+    .text-nice{
+          font-size: 2.5em;
+      }
+  
+    .container-feel{
+        background-color: rgb(40, 210, 212);
+       
+      }
+  
+    .text{
+        margin-bottom: 20px;
+      }
+  
+    #description{
+        color: white;
+      }
+  
+    footer{
+            background-color: black;
+            padding: 15px;
+            color: white;
+     } 

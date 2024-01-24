@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog posts</title>
+  <link rel="stylesheet" href="STYLE-POSTS.CSS">
+  <script src="https://cdn.tiny.cloud/1/u0vcq2ge2frsly348e4dtanhlogl2fntetti0g2f9488ietf/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+  <header>
+    <h2 class="logo">EDUHELP FORUM</h2>
+    <nav class="Navigation">
+          <a href="home.html">HOME</a>
+          <a href="materials.html">MATERIALS</a>
+          <a href="doubts.html">DOUBTS</a>
+          <a href="posts.html">POSTS</a>
+          <button class="btnLogout-popup">LOGOUT</button>
+    </nav>
+</header>
+<body>
+  <section id="posts">
+  <div class="container">
+        <center><h1  class="text-center">Posts section</h1></center> 
+        <button onclick="scrollToBottom()" id="view-posts-btn" class="btnViewPosts">View Posts</button>
+        
+        <h2 class="text">Stay Connected: Explore Our Vibrant College Community!</h2>
+        <div class="container-feel">
+      <div class="description">
+        <img class="community-image" src="https://th.bing.com/th/id/OIG.qeDs4OJOb0YDDvEKGsCV?pid=ImgGn"  alt="College Community Image">
+        <p style="color: white; font-size: 30px;"  class="tree">Dive into the heart of our college life through our posts<br>
+           section! Discover a wealth of stories, events, achievements, <br>
+           and insights that capture the essence of our vibrant community.<br>
+            Engage with our diverse perspectives, stay updated on campus<br>
+             happenings, and join the conversation that fuels our collective <br>
+             journey toward growth and excellence.</p>
+      </div>
+    </div>
+      <div id="blog-form">
+        <center><h1 class="first" style="color: #007bff;">Create Blog Posts</h1></center>
+
+  <div id="post-form">
+    <label for="post-title">Title:</label>
+        <input type="text" id="post-title" name="post-title" required><br><br>
+
+        <label for="post-content">Content:</label><br>
+        
+ 
+    <textarea id="post-content"></textarea>
+    <button id="submit-button" onclick="submitPost()">Submit</button>
+  </div>
+  </div>
+<center><h1 class="text-nice">View posts here</h1></center>
+  <div id="post-container"></div>
+  <center>
+    <footer >
+      <p>© 2024 Eduhelp Forum. All rights reserved.</p>
+    </footer></center>
+    <script>
+        const logoutBtn = document.querySelector(".btnLogout-popup")
+  
+  logoutBtn.addEventListener("click",()=>{
+    window.location.replace("index.html")
+  })
+    </script>
+
+<script>
+tinymce.init({
+    selector: '#post-content',
+    height: 300,
+    plugins: 'autolink lists link image charmap print preview hr anchor pagebreak',
+    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    image_advtab: true
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadSavedPosts();
+  });
+
+  function submitPost() {
+    const content = tinymce.get('post-content').getContent();
+    savePost(content);
+    displayPost(content);
+  }
+
+  function displayPost(content) {
+    const postContainer = document.getElementById('post-container');
+    const postDiv = document.createElement('div');
+    postDiv.classList.add('post');
+
+    const postContent = document.createElement('div');
+    postContent.innerHTML = content;
+    postDiv.appendChild(postContent);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = () => deletePost(postDiv, content);
+    postDiv.appendChild(deleteButton);
+
+    postContainer.appendChild(postDiv);
+    tinymce.get('post-content').setContent('');
+  }
+
+  function deletePost(postDiv, content) {
+    let savedPosts = JSON.parse(localStorage.getItem('posts')) || [];
+    savedPosts = savedPosts.filter(post => post !== content);
+    localStorage.setItem('posts', JSON.stringify(savedPosts));
+
+    const postContainer = document.getElementById('post-container');
+    postContainer.removeChild(postDiv);
+  }
+
+  function savePost(content) {
+    let savedPosts = JSON.parse(localStorage.getItem('posts')) || [];
+    savedPosts.push(content);
+    localStorage.setItem('posts', JSON.stringify(savedPosts));
+  }
+
+  function loadSavedPosts() {
+    const savedPosts = JSON.parse(localStorage.getItem('posts')) || [];
+    savedPosts.forEach((post) => {
+      displayPost(post);
+    });
+  }
+
+</script>
+
+<a id="bottom-anchor"></a>
+  <script>
+    function scrollToBottom() {
+      const bottomAnchor = document.getElementById('bottom-anchor');
+      bottomAnchor.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    }
+  </script>
+</body>
+</html>
+
