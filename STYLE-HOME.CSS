@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: fit-content;
+    background-size: cover;
+    background-position: center;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: #345995;
+    display: flex;
+    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo{
+    font-size: 2em;
+    color:#fff;
+    user-select: none;
+}
+
+.Navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.Navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .2s;
+}
+
+.Navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.Navigation .btnLogout-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: black;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.1s;
+}
+
+.Navigation .btnLogout-popup:hover{
+    background: #fff;
+    color: black;
+}
+
+.nice{
+    background-color: rgb(74, 225, 225);
+    align-items: center;
+    font-size: 2.5em;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.info {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 4em;
+    background-color: #f9f9f9;
+    border-top: 30px;
+  }
+
+  .container {
+    background-color: rgb(113, 210, 102);
+    display: flex;
+    align-items: center;
+  }
+
+  .image {
+    flex: 1;
+    text-align: center;
+  }
+
+  .info-style {
+    background-color: rgb(113, 210, 102);
+    font-size: 2em;
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+.bee{
+    align-items: center;
+    font-size: 2em;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 350px;
+    margin-top: 120px;
+}
+
+.jee{
+    font-size: 2em;
+    margin-left: 10px;
+}
+
+.benefits{
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+
+bg-dark text-white p-4 text-center{
+    background-color: #345995;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+
+  .image-box {
+    text-align: center;
+    width: 30%;
+  }
+
+  .image-box img {
+    max-width: 100%;
+    height: auto;
+  }
+
+ 
+
+  body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+   .descriptions-box {
+        background-image: url("https://th.bing.com/th/id/R.ec137f7e1b0c0c5524b48fe144cbaf66?rik=11C%2bRTEqIAv%2btg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2f3jQbonO.jpg&ehk=MALaOn2QmiwS5ArQaTp%2fWHOdPN77ArQ0VPQY9egQ%2bE4%3d&risl=&pid=ImgRaw&r=0");
+        margin-top: 90px;
+        height: 320px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        font-size: 2em;
+        color: #fff;
+    }
+    
+   p{
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 15px 0;
+    }
+
+    footer{
+      background-color: black;
+      padding: 4px;
+      color: white;
+    }
