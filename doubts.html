@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doubts section</title>
+    <link rel="stylesheet" href="STYLE-DOUBTS.CSS"> 
+</head>
+<header>
+    <h2 class="logo">EDUHELP FORUM</h2>
+    <nav class="Navigation">
+          <a href="home.html">HOME</a>
+          <a href="materials.html">MATERIALS</a>
+          <a href="doubts.html">DOUBTS</a>
+          <a href="posts.html">POSTS</a>
+          <button class="btnLogout-popup">LOGOUT</button>
+    </nav>
+</header>
+<div class="container">
+    <section id="instructions">
+        <center><h1 class="text-center">Doubts section</h1></center>
+        <div class="container-me">
+            <div class="info">
+
+              <p>Welcome to the Doubts Section! This platform allows students to ask questions and get help from their seniors and batchmates. Please follow the guidelines below:</p>
+            </div>
+            <div class="image">
+              <img src="https://th.bing.com/th/id/OIP.V3tLS-BhWyJ_McCHRrQqeAEsEs?rs=1&pid=ImgDetMain" alt="Description of the image">
+            </div>
+          </div>
+        <ul>
+            <h2>Instructions</h2>
+            <li>Ask clear and concise questions.</li>
+            <li>Be respectful and considerate in your replies.</li>
+            <li>If you know the answer, feel free to help your fellow students by providing a reply.</li>
+        </ul>
+    </section>
+    <label for="name-text" id="name">Name of the student:</label><br>
+    <textarea id="name-text" rows="1" placeholder="Enter your name here..."></textarea>
+
+    <form id="doubt-form">
+        <label for="doubt-text">Ask a doubt:</label>
+        <textarea id="doubt-text" rows="4" placeholder="Type your doubt here..."></textarea>
+        <br>
+        <button type="button" onclick="postDoubt()">Submit Doubt</button>
+    </form>
+
+    <div id="doubts-container"></div>
+
+</div>
+<center>
+    <footer class="background-black text-white p-4 text-center">
+      <p>© 2024 Eduhelp Forum. All rights reserved.</p>
+    </footer></center>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDoubtsFromStorage();
+        });
+    
+        function postDoubt() {
+            const doubtText = document.getElementById('doubt-text').value;
+            const nameText = document.getElementById('name-text').value;
+            const doubtsContainer = document.getElementById('doubts-container');
+    
+            if (doubtText.trim() !== '' && nameText.trim() !== '') {
+                const newDoubt = createDoubtElement(nameText, doubtText);
+                doubtsContainer.appendChild(newDoubt);
+    
+                saveDoubtToStorage(nameText, doubtText);
+    
+                document.getElementById('doubt-text').value = '';
+                document.getElementById('name-text').value = '';
+            }
+        }
+    
+        function postReply(button) {
+            const replyText = button.previousElementSibling.value;
+    
+            if (replyText.trim() !== '') {
+                const newReply = document.createElement('div');
+                newReply.className = 'reply';
+                newReply.textContent = replyText;
+    
+                button.parentElement.appendChild(newReply);
+                button.previousElementSibling.value = '';
+            }
+        }
+    
+        function createDoubtElement(name, text) {
+            const newDoubt = document.createElement('div');
+            newDoubt.className = 'doubt';
+            newDoubt.innerHTML = `
+                <p><strong>${name}:</strong> ${text}</p>
+                <div class="reply-container">
+                    <label for="reply-text">Your Reply:</label>
+                    <textarea id="reply-text" rows="2" placeholder="Type your reply here..."></textarea>
+                    <button type="button" onclick="postReply(this)">Submit Reply</button>
+                </div>
+            `;
+    
+            return newDoubt;
+        }
+    
+        function saveDoubtToStorage(name, text) {
+            const storedDoubts = JSON.parse(localStorage.getItem('doubts')) || [];
+            storedDoubts.push({ name, text });
+            localStorage.setItem('doubts', JSON.stringify(storedDoubts));
+        }
+    
+    
+        function saveReplyToStorage(replyElement, replyContainer) {
+            const storedDoubts = JSON.parse(localStorage.getItem('doubts')) || [];
+            const doubtIndex = Array.from(replyContainer.parentElement.children).indexOf(replyContainer.parentElement);
+            storedDoubts[doubtIndex].replies.push(replyElement.textContent);
+            localStorage.setItem('doubts', JSON.stringify(storedDoubts));
+        }
+    
+        function loadDoubtsFromStorage() {
+    const storedDoubts = JSON.parse(localStorage.getItem('doubts')) || [];
+    const doubtsContainer = document.getElementById('doubts-container');
+
+    storedDoubts.forEach((doubt) => {
+        const newDoubt = createDoubtElement(doubt.name, doubt.text, doubt.replies);
+        doubtsContainer.appendChild(newDoubt);
+    });
+}
+     // Uncomment the line below to clear localStorage for testing purposes
+    // localStorage.clear();
+    </script>
+    
+<script>
+    const logoutBtn = document.querySelector(".btnLogout-popup")
+logoutBtn.addEventListener("click",()=>{
+window.location.replace("index.html")
+})
+</script>
+</body>
+</body>
+</html>
